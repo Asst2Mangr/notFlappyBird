@@ -2,6 +2,17 @@
 
 int main()
 {
+	InitWindow(800, 600, "Pong");
+	SetWindowState(FLAG_VSYNC_HINT);
 
-	return 0;
+	while (!WindowShouldClose())
+	{
+		BeginDrawing();
+			ClearBackground(BLUE);
+
+			DrawFPS(10, 10);
+		EndDrawing();
+	}
+	
+	CloseWindow();
 }
