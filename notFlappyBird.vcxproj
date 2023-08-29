@@ -132,11 +132,6 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\Downloads\raylib-4.5.0_win32_msvc16\raylib-4.5.0_win32_msvc16\include\raylib.h" />
-    <ClInclude Include="..\..\..\Downloads\raylib-4.5.0_win32_msvc16\raylib-4.5.0_win32_msvc16\include\raymath.h" />
-    <ClInclude Include="..\..\..\Downloads\raylib-4.5.0_win32_msvc16\raylib-4.5.0_win32_msvc16\include\rlgl.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

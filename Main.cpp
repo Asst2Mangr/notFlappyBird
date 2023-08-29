@@ -2,7 +2,7 @@
 
 int main()
 {
-	InitWindow(800, 600, "Pong");
+	InitWindow(800, 600, "notFlappyBirds");
 	SetWindowState(FLAG_VSYNC_HINT);
 
 	while (!WindowShouldClose())
