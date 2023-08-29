@@ -110,7 +110,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\raylib-4.5.0_win64_msvc16\raylib-4.5.0_win64_msvc16\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>rayLib.lib;$winmm.lib;(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>rayLib.lib;winmm.lib;&amp;(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -131,6 +131,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Downloads\raylib-4.5.0_win32_msvc16\raylib-4.5.0_win32_msvc16\include\raylib.h" />
+    <ClInclude Include="..\..\..\Downloads\raylib-4.5.0_win32_msvc16\raylib-4.5.0_win32_msvc16\include\raymath.h" />
+    <ClInclude Include="..\..\..\Downloads\raylib-4.5.0_win32_msvc16\raylib-4.5.0_win32_msvc16\include\rlgl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
