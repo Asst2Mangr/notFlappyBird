@@ -8,7 +8,11 @@ int main()
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
-		ClearBackground(DARKGREEN);
+			ClearBackground(DARKGREEN);
+
+
+			DrawCircle(GetScreenWidth() / 4, GetScreenHeight() / 2, 25, BLACK);
+
 			DrawFPS(10, 10);
 		EndDrawing();
 	}
