@@ -34,22 +34,22 @@ int main()
 			piller1.width = 100;
 
 			Piller piller2;
-			piller1.x = 550;
-			piller1.y = 0;
-			piller1.height = 600;
-			piller1.width = 100;
+			piller2.x = 550;
+			piller2.y = 0;
+			piller2.height = 600;
+			piller2.width = 100;
 
 			Piller piller3;
-			piller1.x = 400;
-			piller1.y = 0;
-			piller1.height = 600;
-			piller1.width = 100;
+			piller3.x = 400;
+			piller3.y = 0;
+			piller3.height = 600;
+			piller3.width = 100;
 
 			Piller piller4;
-			piller1.x = 250;
-			piller1.y = 0;
-			piller1.height = 600;
-			piller1.width = 100;
+			piller4.x = 250;
+			piller4.y = 0;
+			piller4.height = 600;
+			piller4.width = 100;
 
 			piller1.Draw();
 			piller2.Draw();
