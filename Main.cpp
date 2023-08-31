@@ -28,42 +28,40 @@ int main()
 	piller1.y = 0;
 	piller1.height = 600;
 	piller1.width = 100;
-	piller1.speed = 200;
+	piller1.speed = 5;
 
 	Piller piller2;
 	piller2.x = 550;
 	piller2.y = 0;
 	piller2.height = 600;
 	piller2.width = 100;
-	piller1.speed = 200;
 
 	Piller piller3;
 	piller3.x = 400;
 	piller3.y = 0;
 	piller3.height = 600;
 	piller3.width = 100;
-	piller1.speed = 200;
 
 	Piller piller4;
 	piller4.x = 250;
 	piller4.y = 0;
 	piller4.height = 600;
 	piller4.width = 100;
-	piller1.speed = 200;
 
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
 			ClearBackground(DARKGREEN);
 
-			piller1.x -= (700 / piller1.speed);
-			piller2.x -= (700 / piller1.speed);
-			piller3.x -= (700 / piller1.speed);
-			piller4.x -= (700 / piller1.speed);
+			piller1.x -= piller1.speed;
+			piller2.x -= piller1.speed;
+			piller3.x -= piller1.speed;
+			piller4.x -= piller1.speed;
 
 			if (piller1.x < -90)
 			{
 				piller1.x = 790;
+				piller1.speed += 1* GetFrameTime();
 			}
 			if (piller2.x < -90)
 			{
@@ -77,6 +75,11 @@ int main()
 			{
 				piller4.x = 790;
 			}
+			if (piller1.speed == 0)
+			{
+				piller1.speed = 50;
+			}
+			
 
 			piller1.Draw();
 			piller2.Draw();
