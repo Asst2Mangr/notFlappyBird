@@ -7,7 +7,7 @@ struct Bird
 
 	void Draw()
 	{
-
+		DrawCircle(x, y, radius, BLACK);
 	}
 };
 
@@ -27,6 +27,11 @@ int main()
 {
 	InitWindow(800, 600, "Not Flappy Bird");
 	SetWindowState(FLAG_VSYNC_HINT);
+
+	Bird bird;
+	bird.x = GetScreenWidth() / 4;
+	bird.y = GetScreenHeight() / 2;
+	bird.radius = 25;
 
 	Piller piller1;
 	piller1.x = (GetScreenWidth() / 4) + 200;
@@ -91,8 +96,7 @@ int main()
 			piller3.Draw();
 			piller4.Draw();
 
-
-			DrawCircle(GetScreenWidth() / 4, GetScreenHeight() / 2, 25, BLACK);
+			bird.Draw();
 
 			DrawFPS(10, 10);
 		EndDrawing();
