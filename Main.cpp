@@ -2,7 +2,13 @@
 
 struct Bird
 {
+	float x, y;
+	float radius;
 
+	void Draw()
+	{
+
+	}
 };
 
 struct Piller
