@@ -1,9 +1,16 @@
 #include "raylib.h"
+//Reaenn, Zoey, Jordan
+// 9/1/2023
+// This is our not flappy bird game!
 
+//bird class
 struct Bird
 {
 	float x, y;
 	float radius;
+	float speedUp;
+	float speedDown;
+	float speedFall;
 
 	void Draw()
 	{
@@ -11,6 +18,7 @@ struct Bird
 	}
 };
 
+//pillar class
 struct Piller
 {
 	float x, y;
@@ -32,6 +40,9 @@ int main()
 	bird.x = GetScreenWidth() / 4;
 	bird.y = GetScreenHeight() / 2;
 	bird.radius = 25;
+	bird.speedUp = 1000;
+	bird.speedDown = 300;
+	bird.speedFall= 100;
 
 	Piller piller1;
 	piller1.x = (GetScreenWidth() / 4) + 200;
@@ -96,7 +107,22 @@ int main()
 			piller3.Draw();
 			piller4.Draw();
 
+			//draws bird
 			bird.Draw();
+
+
+			if (IsKeyPressed(KEY_SPACE))
+			{
+				bird.y -= bird.speedUp * GetFrameTime();
+			}
+			else if (IsKeyReleased(KEY_SPACE))
+			{
+				bird.y += bird.speedDown * GetFrameTime();
+			}
+			else if(IsKeyUp(KEY_SPACE))
+			{
+				bird.y += bird.speedFall * GetFrameTime();
+			}
 
 			DrawFPS(10, 10);
 		EndDrawing();
