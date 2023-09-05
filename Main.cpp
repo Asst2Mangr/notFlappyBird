@@ -1,4 +1,7 @@
 #include "raylib.h"
+#include<iostream>
+#include<cstdlib>
+using namespace std;
 //Reaenn, Zoey, Jordan
 // 9/1/2023
 // This is our not flappy bird game!
@@ -25,9 +28,13 @@ struct Piller
 	float height, width;
 	float speed;
 
+	float ranMain;
+	float ranMine;
+
 	void Draw()
 	{
-		DrawRectangle(x, y, width, height, GREEN);
+		DrawRectangle(x, y - ranMain, width, height, RED);
+		DrawRectangle(x, y - ranMine, width, height, BLUE);
 	}
 };
 
@@ -50,24 +57,16 @@ int main()
 	piller1.height = 600;
 	piller1.width = 100;
 	piller1.speed = 5;
+	piller1.ranMain = GetRandomValue(600, 200);
+	piller1.ranMine = piller1.ranMain - piller1.height - 150;
 
 	Piller piller2;
-	piller2.x = ((GetScreenWidth() / 4) * 2) + 200;
+	piller2.x = (piller1.x + 500);
 	piller2.y = 0;
 	piller2.height = 600;
 	piller2.width = 100;
-
-	Piller piller3;
-	piller3.x = ((GetScreenWidth() / 4) * 3) + 200;
-	piller3.y = 0;
-	piller3.height = 600;
-	piller3.width = 100;
-
-	Piller piller4;
-	piller4.x = ((GetScreenWidth() / 4) * 4) + 200;
-	piller4.y = 0;
-	piller4.height = 600;
-	piller4.width = 100;
+	piller2.ranMain = GetRandomValue(600, 200);
+	piller2.ranMine = piller2.ranMain - piller2.height - 150;
 
 	while (!WindowShouldClose())
 	{
@@ -79,25 +78,18 @@ int main()
 
 			piller1.x -= piller1.speed;
 			piller2.x -= piller1.speed;
-			piller3.x -= piller1.speed;
-			piller4.x -= piller1.speed;
-
 			if (piller1.x < -90)
 			{
-				piller1.x = 790;
-				piller1.speed += 1 * GetFrameTime();
+				piller1.x = (piller2.x + 500);
+				piller1.speed += 5* GetFrameTime();
+				piller1.ranMain = GetRandomValue(600, 200);
+				piller1.ranMine = piller1.ranMain - piller1.height - 150;
 			}
 			if (piller2.x < -90)
 			{
-				piller2.x = 790;
-			}
-			if (piller3.x < -90)
-			{
-				piller3.x = 790;
-			}
-			if (piller4.x < -90)
-			{
-				piller4.x = 790;
+				piller2.x = (piller1.x + 500);
+				piller2.ranMain = GetRandomValue(600, 200);
+				piller2.ranMine = piller2.ranMain - piller2.height - 150;
 			}
 			if (piller1.speed == 0)
 			{
@@ -106,8 +98,6 @@ int main()
 
 			piller1.Draw();
 			piller2.Draw();
-			piller3.Draw();
-			piller4.Draw();
 
 			//draws bird
 			bird.Draw();
