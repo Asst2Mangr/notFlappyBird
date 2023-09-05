@@ -71,9 +71,11 @@ int main()
 
 	while (!WindowShouldClose())
 	{
-		DrawText("Press Enter to start!", (GetScreenWidth() / 4), (GetScreenWidth() / 4), 25, WHITE);
+		DrawText("Press Spacebar to start!", (GetScreenWidth() / 4), (GetScreenWidth() / 4), 25, WHITE);
 		BeginDrawing();
-
+		if (IsKeyPressed(KEY_SPACE))
+		{
+			
 			ClearBackground(BLACK);
 
 			piller1.x -= piller1.speed;
@@ -128,7 +130,15 @@ int main()
 				bird.y += bird.speedFall * GetFrameTime();
 			}
 
+			//start of resetting the game
+			if (bird.y > 0 && IsKeyPressed(KEY_ENTER))
+			{
+				bird.x = GetScreenWidth() / 4;
+				bird.y = GetScreenHeight() / 2;
+			}
+
 			DrawFPS(10, 10);
+		}
 		EndDrawing();
 	}
 	
