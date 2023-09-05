@@ -71,11 +71,10 @@ int main()
 
 	while (!WindowShouldClose())
 	{
+		
 		DrawText("Press Spacebar to start!", (GetScreenWidth() / 4), (GetScreenWidth() / 4), 25, WHITE);
 		BeginDrawing();
-		if (IsKeyPressed(KEY_SPACE))
-		{
-			
+
 			ClearBackground(BLACK);
 
 			piller1.x -= piller1.speed;
@@ -138,7 +137,7 @@ int main()
 			}
 
 			DrawFPS(10, 10);
-		}
+
 		EndDrawing();
 	}
 	
