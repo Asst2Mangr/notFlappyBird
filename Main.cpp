@@ -47,7 +47,7 @@ int main()
 	bird.x = GetScreenWidth() / 4;
 	bird.y = GetScreenHeight() / 2;
 	bird.radius = 25;
-	bird.speedUp = 1500;
+	bird.speedUp = 1600;
 	bird.speedDown = 200;
 	bird.speedFall= 250;
 
