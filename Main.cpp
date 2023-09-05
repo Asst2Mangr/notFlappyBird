@@ -14,7 +14,7 @@ struct Bird
 
 	void Draw()
 	{
-		DrawCircle(x, y, radius, BLACK);
+		DrawCircle(x, y, radius, RED);
 	}
 };
 
@@ -27,7 +27,7 @@ struct Piller
 
 	void Draw()
 	{
-		DrawRectangle(x, y, width, height, RED);
+		DrawRectangle(x, y, width, height, GREEN);
 	}
 };
 
@@ -71,8 +71,12 @@ int main()
 
 	while (!WindowShouldClose())
 	{
+		DrawText("Press Spacebar to start!", (GetScreenWidth() / 4), (GetScreenWidth() / 4), 25, WHITE);
 		BeginDrawing();
-			ClearBackground(DARKGREEN);
+		if (IsKeyPressed(KEY_SPACE))
+		{
+			
+			ClearBackground(BLACK);
 
 			piller1.x -= piller1.speed;
 			piller2.x -= piller1.speed;
@@ -82,7 +86,7 @@ int main()
 			if (piller1.x < -90)
 			{
 				piller1.x = 790;
-				piller1.speed += 1* GetFrameTime();
+				piller1.speed += 1 * GetFrameTime();
 			}
 			if (piller2.x < -90)
 			{
@@ -100,7 +104,6 @@ int main()
 			{
 				piller1.speed = 50;
 			}
-			
 
 			piller1.Draw();
 			piller2.Draw();
@@ -110,7 +113,6 @@ int main()
 			//draws bird
 			bird.Draw();
 
-
 			if (IsKeyPressed(KEY_SPACE))
 			{
 				bird.y -= bird.speedUp * GetFrameTime();
@@ -119,11 +121,11 @@ int main()
 			{
 				bird.y += bird.speedDown * GetFrameTime();
 			}
-			else if(IsKeyUp(KEY_SPACE))
+			else if (IsKeyUp(KEY_SPACE))
 			{
 				bird.y += bird.speedFall * GetFrameTime();
 			}
-			else if(IsKeyDown(KEY_SPACE))
+			else if (IsKeyDown(KEY_SPACE))
 			{
 				bird.y += bird.speedFall * GetFrameTime();
 			}
@@ -136,6 +138,7 @@ int main()
 			}
 
 			DrawFPS(10, 10);
+		}
 		EndDrawing();
 	}
 	
