@@ -44,7 +44,7 @@ int main()
 	bird.x = GetScreenWidth() / 4;
 	bird.y = GetScreenHeight() / 2;
 	bird.radius = 25;
-	bird.speedUp = 1000;
+	bird.speedUp = 1200;
 	bird.speedDown = 300;
 	bird.speedFall= 100;
 
@@ -132,6 +132,10 @@ int main()
 				bird.y += bird.speedDown * GetFrameTime();
 			}
 			else if(IsKeyUp(KEY_SPACE))
+			{
+				bird.y += bird.speedFall * GetFrameTime();
+			}
+			else if(IsKeyDown(KEY_SPACE))
 			{
 				bird.y += bird.speedFall * GetFrameTime();
 			}
