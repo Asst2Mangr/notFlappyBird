@@ -25,9 +25,13 @@ struct Piller
 	float height, width;
 	float speed;
 
+	float ranMain;
+	float ranMine;
+
 	void Draw()
 	{
-		DrawRectangle(x, y, width, height, RED);
+		DrawRectangle(x, y - ranMain, width, height, RED);
+		DrawRectangle(x, y + ranMine, width, height, BLUE);
 	}
 };
 
@@ -50,24 +54,32 @@ int main()
 	piller1.height = 600;
 	piller1.width = 100;
 	piller1.speed = 5;
+	piller1.ranMain = 300;
+	piller1.ranMine = piller1.ranMain + piller1.y + 150;
 
 	Piller piller2;
 	piller2.x = ((GetScreenWidth() / 4) * 2) + 200;
 	piller2.y = 0;
 	piller2.height = 600;
 	piller2.width = 100;
+	piller2.ranMain = 300;
+	piller2.ranMine = piller2.ranMain + piller2.y + 150;
 
 	Piller piller3;
 	piller3.x = ((GetScreenWidth() / 4) * 3) + 200;
 	piller3.y = 0;
 	piller3.height = 600;
 	piller3.width = 100;
+	piller3.ranMain = 300;
+	piller3.ranMine = piller3.ranMain + piller3.y + 150;
 
 	Piller piller4;
 	piller4.x = ((GetScreenWidth() / 4) * 4) + 200;
 	piller4.y = 0;
 	piller4.height = 600;
 	piller4.width = 100;
+	piller4.ranMain = 300;
+	piller4.ranMine = piller4.ranMain + piller4.y + 150;
 
 	while (!WindowShouldClose())
 	{
