@@ -33,8 +33,8 @@ struct Piller
 
 	void Draw()
 	{
-		DrawRectangle(x, y - ranMain, width, height, RED);
-		DrawRectangle(x, y - ranMine, width, height, BLUE);
+		DrawRectangle(x, y - ranMain, width, height, GREEN);
+		DrawRectangle(x, y - ranMine, width, height, GREEN);
 	}
 };
 
@@ -47,9 +47,9 @@ int main()
 	bird.x = GetScreenWidth() / 4;
 	bird.y = GetScreenHeight() / 2;
 	bird.radius = 25;
-	bird.speedUp = 1200;
-	bird.speedDown = 300;
-	bird.speedFall= 100;
+	bird.speedUp = 1500;
+	bird.speedDown = 200;
+	bird.speedFall= 250;
 
 	Piller piller1;
 	piller1.x = (GetScreenWidth() / 4) + 200;
