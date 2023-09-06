@@ -47,7 +47,7 @@ int main()
 	bird.x = GetScreenWidth() / 4;
 	bird.y = GetScreenHeight() / 2;
 	bird.radius = 25;
-	bird.speedUp = 1600;
+	bird.speedUp = 2100;
 	bird.speedDown = 200;
 	bird.speedFall= 250;
 
@@ -68,14 +68,11 @@ int main()
 	piller2.ranMain = GetRandomValue(600, 200);
 	piller2.ranMine = piller2.ranMain - piller2.height - 150;
 
-	
 	bool start = false;
 
-	
 		while (!WindowShouldClose())
 		{
 
-			
 			BeginDrawing();
 
 			ClearBackground(BLACK);
@@ -142,7 +139,7 @@ int main()
 			}
 			else
 			{
-				DrawText("Press Spacebar to start!", (GetScreenWidth() / 4), (GetScreenWidth() / 4), 25, WHITE);
+				DrawText("Press Enter to start!", (GetScreenWidth() / 4), (GetScreenWidth() / 4), 25, WHITE);
 			}
 
 			EndDrawing();
