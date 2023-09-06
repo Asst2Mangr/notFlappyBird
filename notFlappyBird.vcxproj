@@ -108,13 +108,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\reaenn.wiebers\Downloads\raylib-4.5.0_win32_msvc16 (1)\raylib-4.5.0_win32_msvc16\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>"C:\Libraries\raylib-4.5.0_win64_msvc16\include"</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\reaenn.wiebers\Downloads\raylib-4.5.0_win32_msvc16 (1)\raylib-4.5.0_win32_msvc16\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>"C:\Libraries\raylib-4.5.0_win64_msvc16\lib"</AdditionalLibraryDirectories>
       <AdditionalDependencies>raylib.lib;winmm.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
