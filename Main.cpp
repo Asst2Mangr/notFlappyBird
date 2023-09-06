@@ -68,68 +68,85 @@ int main()
 	piller2.ranMain = GetRandomValue(600, 200);
 	piller2.ranMine = piller2.ranMain - piller2.height - 150;
 
-	while (!WindowShouldClose())
-	{
-		
-		DrawText("Press Spacebar to start!", (GetScreenWidth() / 4), (GetScreenWidth() / 4), 25, WHITE);
-		BeginDrawing();
+	
+	bool start = false;
+
+	
+		while (!WindowShouldClose())
+		{
+
+			
+			BeginDrawing();
 
 			ClearBackground(BLACK);
 
-			piller1.x -= piller1.speed;
-			piller2.x -= piller1.speed;
-			if (piller1.x < -90)
+			if (IsKeyPressed(KEY_ENTER))
 			{
-				piller1.x = (piller2.x + 500);
-				piller1.speed += 5* GetFrameTime();
-				piller1.ranMain = GetRandomValue(600, 200);
-				piller1.ranMine = piller1.ranMain - piller1.height - 150;
+				start = true;
 			}
-			if (piller2.x < -90)
+			if (start == true)
 			{
-				piller2.x = (piller1.x + 500);
-				piller2.ranMain = GetRandomValue(600, 200);
-				piller2.ranMine = piller2.ranMain - piller2.height - 150;
+
+				piller1.x -= piller1.speed;
+				piller2.x -= piller1.speed;
+				if (piller1.x < -90)
+				{
+					piller1.x = (piller2.x + 500);
+					piller1.speed += 5 * GetFrameTime();
+					piller1.ranMain = GetRandomValue(600, 200);
+					piller1.ranMine = piller1.ranMain - piller1.height - 150;
+				}
+				if (piller2.x < -90)
+				{
+					piller2.x = (piller1.x + 500);
+					piller2.ranMain = GetRandomValue(600, 200);
+					piller2.ranMine = piller2.ranMain - piller2.height - 150;
+				}
+				if (piller1.speed == 0)
+				{
+					piller1.speed = 50;
+				}
+
+				piller1.Draw();
+				piller2.Draw();
+
+				//draws bird
+				bird.Draw();
+
+				if (IsKeyPressed(KEY_SPACE))
+				{
+					bird.y -= bird.speedUp * GetFrameTime();
+				}
+				else if (IsKeyReleased(KEY_SPACE))
+				{
+					bird.y += bird.speedDown * GetFrameTime();
+				}
+				else if (IsKeyUp(KEY_SPACE))
+				{
+					bird.y += bird.speedFall * GetFrameTime();
+				}
+				else if (IsKeyDown(KEY_SPACE))
+				{
+					bird.y += bird.speedFall * GetFrameTime();
+				}
+
+				//start of resetting the game
+				if (bird.y > 0 && IsKeyPressed(KEY_ENTER))
+				{
+					bird.x = GetScreenWidth() / 4;
+					bird.y = GetScreenHeight() / 2;
+				}
+
+				DrawFPS(10, 10);
+
 			}
-			if (piller1.speed == 0)
+			else
 			{
-				piller1.speed = 50;
+				DrawText("Press Spacebar to start!", (GetScreenWidth() / 4), (GetScreenWidth() / 4), 25, WHITE);
 			}
 
-			piller1.Draw();
-			piller2.Draw();
-
-			//draws bird
-			bird.Draw();
-
-			if (IsKeyPressed(KEY_SPACE))
-			{
-				bird.y -= bird.speedUp * GetFrameTime();
-			}
-			else if (IsKeyReleased(KEY_SPACE))
-			{
-				bird.y += bird.speedDown * GetFrameTime();
-			}
-			else if (IsKeyUp(KEY_SPACE))
-			{
-				bird.y += bird.speedFall * GetFrameTime();
-			}
-			else if (IsKeyDown(KEY_SPACE))
-			{
-				bird.y += bird.speedFall * GetFrameTime();
-			}
-
-			//start of resetting the game
-			if (bird.y > 0 && IsKeyPressed(KEY_ENTER))
-			{
-				bird.x = GetScreenWidth() / 4;
-				bird.y = GetScreenHeight() / 2;
-			}
-
-			DrawFPS(10, 10);
-
-		EndDrawing();
-	}
+			EndDrawing();
+		}
 	
 	CloseWindow();
 }
