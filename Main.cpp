@@ -1,7 +1,6 @@
 #include "raylib.h"
 #include<iostream>
 #include<cstdlib>
-using namespace std;
 //Reaenn, Zoey, Jordan
 // 9/1/2023
 // This is our not flappy bird game!
