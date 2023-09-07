@@ -123,13 +123,6 @@ int main()
 					bird.y += bird.speedFall * GetFrameTime();
 				}
 
-				//start of resetting the game
-				if (bird.y > 0 && IsKeyPressed(KEY_ENTER))
-				{
-					bird.x = GetScreenWidth() / 4;
-					bird.y = GetScreenHeight() / 2;
-				}
-
 
 				//Start of Collision
 				if (CheckCollisionCircleRec(Vector2{ bird.x, bird.y }, bird.radius, piller1.getRec1()))
@@ -173,18 +166,27 @@ int main()
 				piller1.Draw();
 				piller2.Draw();
 
+				//start of resetting the game
+				if (IsKeyPressed(KEY_R))
+				{
+					start = false;
+				}
+
 				//draws bird
 				bird.Draw();
 
 				DrawFPS(10, 10);
 
+
 			}
 			else
 			{
+				start = false;
 				DrawText("Press Enter to start!", (GetScreenWidth() / 4), (GetScreenWidth() / 4), 25, WHITE);
 			}
 
 			EndDrawing();
+
 		}
 	
 	CloseWindow();
