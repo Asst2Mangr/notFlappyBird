@@ -95,17 +95,40 @@ int main()
 	piller2.ranMine = piller2.ranMain - piller2.height - 200;
 
 	bool start = false;
+	int score = 0;
 
 		while (!WindowShouldClose())
 		{
 
-			if (IsKeyPressed(KEY_ENTER))
+			if (IsKeyPressed(KEY_ENTER) && start == false)
 			{
 				start = true;
-			}
-			if (IsKeyPressed(KEY_R))
-			{
-				start = false;
+				score = 0;
+
+				bird.x = GetScreenWidth() / 4;
+				bird.y = GetScreenHeight() / 2;
+				bird.radius = 25;
+				bird.speedUp = 2100;
+				bird.speedDown = 200;
+				bird.speedFall = 250;
+
+				piller1.x = (GetScreenWidth() / 4) + 200;
+				piller1.y = 0;
+				piller1.height = 600;
+				piller1.width = 100;
+				piller1.speed = 5;
+				piller1.ranMain = GetRandomValue(600, 200);
+				piller1.ranMine = piller1.ranMain - piller1.height - 200;
+
+				piller2.x = (piller1.x + 500);
+				piller2.y = 0;
+				piller2.height = 600;
+				piller2.width = 100;
+				piller2.ranMain = GetRandomValue(600, 200);
+				piller2.ranMine = piller2.ranMain - piller2.height - 200;
+
+				bird.deadbird = false;
+				bird.ChangeColor();
 			}
 			if (start == true)
 			{
@@ -118,12 +141,14 @@ int main()
 					piller1.speed += 5 * GetFrameTime();
 					piller1.ranMain = GetRandomValue(600, 200);
 					piller1.ranMine = piller1.ranMain - piller1.height - 200;
+					score++;
 				}
 				if (piller2.x < -90)
 				{
 					piller2.x = (piller1.x + 500);
 					piller2.ranMain = GetRandomValue(600, 200);
 					piller2.ranMine = piller2.ranMain - piller2.height - 200;
+					score++;
 				}
 
 				if (IsKeyPressed(KEY_SPACE))
@@ -185,9 +210,6 @@ int main()
 					bird.deadbird = true;
 					bird.ChangeColor();
 				}
-
-				//start of resetting the game
-
 				BeginDrawing();
 
 				ClearBackground(BLACK);
@@ -200,14 +222,21 @@ int main()
 				bird.Draw();
 
 				DrawFPS(10, 10);
+				EndDrawing();
 
 			}
 			else
 			{
+				ClearBackground(BLACK);
 				DrawText("Press Enter to start!", (GetScreenWidth() / 4), (GetScreenWidth() / 4), 25, WHITE);
+				DrawText(TextFormat("Score: %i", score), (GetScreenWidth()  / 4), (GetScreenWidth() - 400), 40, WHITE);
+				EndDrawing();
 			}
 
-			EndDrawing();
+			if (IsKeyPressed(KEY_R))
+			{
+				start = false;
+			}
 		}
 	
 	CloseWindow();
