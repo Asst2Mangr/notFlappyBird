@@ -13,10 +13,28 @@ struct Bird
 	float speedUp;
 	float speedDown;
 	float speedFall;
+	bool deadbird = false;
+
+	Color dead = DARKGREEN;
+	Color alive = RED;
+
+	Color use = RED;
+
+	void ChangeColor()
+	{
+		if (deadbird == false)
+		{
+			use = alive;
+		}
+		else
+		{
+			use = dead;
+		}
+	}
 
 	void Draw()
 	{
-		DrawCircle(x, y, radius, RED);
+		DrawCircle(x, y, radius, use);
 	}
 };
 
@@ -41,8 +59,6 @@ struct Piller
 
 	void Draw()
 	{
-		//DrawRectangle(x, y - ranMain, width, height, GREEN);
-		//DrawRectangle(x, y - ranMine, width, height, GREEN);
 		DrawRectangleRec(getRec1(), GREEN);
 		DrawRectangleRec(getRec2(), GREEN);
 	}
@@ -86,6 +102,10 @@ int main()
 			if (IsKeyPressed(KEY_ENTER))
 			{
 				start = true;
+			}
+			if (IsKeyPressed(KEY_R))
+			{
+				start = false;
 			}
 			if (start == true)
 			{
@@ -132,6 +152,8 @@ int main()
 					bird.speedUp = 0;
 					piller1.speed = 0;
 					piller2.speed = 0;
+					bird.deadbird = true;
+					bird.ChangeColor();
 				}
 				if (CheckCollisionCircleRec(Vector2{ bird.x, bird.y }, bird.radius, piller1.getRec2()))
 				{
@@ -140,6 +162,8 @@ int main()
 					bird.speedUp = 0;
 					piller1.speed = 0;
 					piller2.speed = 0;
+					bird.deadbird = true;
+					bird.ChangeColor();
 				}
 				if (CheckCollisionCircleRec(Vector2{ bird.x, bird.y }, bird.radius, piller2.getRec1()))
 				{
@@ -148,6 +172,8 @@ int main()
 					bird.speedUp = 0;
 					piller1.speed = 0;
 					piller2.speed = 0;
+					bird.deadbird = true;
+					bird.ChangeColor();
 				}
 				if (CheckCollisionCircleRec(Vector2{ bird.x, bird.y }, bird.radius, piller2.getRec2()))
 				{
@@ -156,7 +182,11 @@ int main()
 					bird.speedUp = 0;
 					piller1.speed = 0;
 					piller2.speed = 0;
+					bird.deadbird = true;
+					bird.ChangeColor();
 				}
+
+				//start of resetting the game
 
 				BeginDrawing();
 
@@ -166,27 +196,18 @@ int main()
 				piller1.Draw();
 				piller2.Draw();
 
-				//start of resetting the game
-				if (IsKeyPressed(KEY_R))
-				{
-					start = false;
-				}
-
 				//draws bird
 				bird.Draw();
 
 				DrawFPS(10, 10);
 
-
 			}
 			else
 			{
-				start = false;
 				DrawText("Press Enter to start!", (GetScreenWidth() / 4), (GetScreenWidth() / 4), 25, WHITE);
 			}
 
 			EndDrawing();
-
 		}
 	
 	CloseWindow();
