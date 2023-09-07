@@ -30,10 +30,21 @@ struct Piller
 	float ranMain;
 	float ranMine;
 
+	Rectangle getRec1()
+	{
+		return Rectangle{ x, y - ranMain, width, height};
+	}
+	Rectangle getRec2()
+	{
+		return Rectangle{ x, y - ranMine, width, height };
+	}
+
 	void Draw()
 	{
-		DrawRectangle(x, y - ranMain, width, height, GREEN);
-		DrawRectangle(x, y - ranMine, width, height, GREEN);
+		//DrawRectangle(x, y - ranMain, width, height, GREEN);
+		//DrawRectangle(x, y - ranMine, width, height, GREEN);
+		DrawRectangleRec(getRec1(), GREEN);
+		DrawRectangleRec(getRec2(), GREEN);
 	}
 };
 
@@ -57,7 +68,7 @@ int main()
 	piller1.width = 100;
 	piller1.speed = 5;
 	piller1.ranMain = GetRandomValue(600, 200);
-	piller1.ranMine = piller1.ranMain - piller1.height - 150;
+	piller1.ranMine = piller1.ranMain - piller1.height - 200;
 
 	Piller piller2;
 	piller2.x = (piller1.x + 500);
@@ -65,7 +76,7 @@ int main()
 	piller2.height = 600;
 	piller2.width = 100;
 	piller2.ranMain = GetRandomValue(600, 200);
-	piller2.ranMine = piller2.ranMain - piller2.height - 150;
+	piller2.ranMine = piller2.ranMain - piller2.height - 200;
 
 	bool start = false;
 
@@ -86,17 +97,13 @@ int main()
 					piller1.x = (piller2.x + 500);
 					piller1.speed += 5 * GetFrameTime();
 					piller1.ranMain = GetRandomValue(600, 200);
-					piller1.ranMine = piller1.ranMain - piller1.height - 150;
+					piller1.ranMine = piller1.ranMain - piller1.height - 200;
 				}
 				if (piller2.x < -90)
 				{
 					piller2.x = (piller1.x + 500);
 					piller2.ranMain = GetRandomValue(600, 200);
-					piller2.ranMine = piller2.ranMain - piller2.height - 150;
-				}
-				if (piller1.speed == 0)
-				{
-					piller1.speed = 50;
+					piller2.ranMine = piller2.ranMain - piller2.height - 200;
 				}
 
 				if (IsKeyPressed(KEY_SPACE))
@@ -121,6 +128,41 @@ int main()
 				{
 					bird.x = GetScreenWidth() / 4;
 					bird.y = GetScreenHeight() / 2;
+				}
+
+
+				//Start of Collision
+				if (CheckCollisionCircleRec(Vector2{ bird.x, bird.y }, bird.radius, piller1.getRec1()))
+				{
+					bird.speedFall = 0;
+					bird.speedDown = 0;
+					bird.speedUp = 0;
+					piller1.speed = 0;
+					piller2.speed = 0;
+				}
+				if (CheckCollisionCircleRec(Vector2{ bird.x, bird.y }, bird.radius, piller1.getRec2()))
+				{
+					bird.speedFall = 0;
+					bird.speedDown = 0;
+					bird.speedUp = 0;
+					piller1.speed = 0;
+					piller2.speed = 0;
+				}
+				if (CheckCollisionCircleRec(Vector2{ bird.x, bird.y }, bird.radius, piller2.getRec1()))
+				{
+					bird.speedFall = 0;
+					bird.speedDown = 0;
+					bird.speedUp = 0;
+					piller1.speed = 0;
+					piller2.speed = 0;
+				}
+				if (CheckCollisionCircleRec(Vector2{ bird.x, bird.y }, bird.radius, piller2.getRec2()))
+				{
+					bird.speedFall = 0;
+					bird.speedDown = 0;
+					bird.speedUp = 0;
+					piller1.speed = 0;
+					piller2.speed = 0;
 				}
 
 				BeginDrawing();
