@@ -72,10 +72,6 @@ int main()
 		while (!WindowShouldClose())
 		{
 
-			BeginDrawing();
-
-			ClearBackground(BLACK);
-
 			if (IsKeyPressed(KEY_ENTER))
 			{
 				start = true;
@@ -103,12 +99,6 @@ int main()
 					piller1.speed = 50;
 				}
 
-				piller1.Draw();
-				piller2.Draw();
-
-				//draws bird
-				bird.Draw();
-
 				if (IsKeyPressed(KEY_SPACE))
 				{
 					bird.y -= bird.speedUp * GetFrameTime();
@@ -132,6 +122,17 @@ int main()
 					bird.x = GetScreenWidth() / 4;
 					bird.y = GetScreenHeight() / 2;
 				}
+
+				BeginDrawing();
+
+				ClearBackground(BLACK);
+
+				//draws Pillers
+				piller1.Draw();
+				piller2.Draw();
+
+				//draws bird
+				bird.Draw();
 
 				DrawFPS(10, 10);
 
