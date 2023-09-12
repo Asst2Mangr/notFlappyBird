@@ -15,11 +15,13 @@ struct Bird
 	float speedFall;
 	bool deadbird = false;
 
+	// set bird colors
 	Color dead = DARKGREEN;
 	Color alive = RED;
 
 	Color use = RED;
 
+	// change bird color if it collides 
 	void ChangeColor()
 	{
 		if (deadbird == false)
@@ -32,6 +34,7 @@ struct Bird
 		}
 	}
 
+	// create "Bird"
 	void Draw()
 	{
 		DrawCircle(x, y, radius, use);
@@ -58,6 +61,7 @@ struct Piller
 		return Rectangle{ x, y - ranMine, width, height };
 	}
 
+	// create pillers
 	void Draw()
 	{
 		DrawRectangleRec(getRec1(), GREEN);
@@ -103,7 +107,7 @@ int main()
 
 		while (!WindowShouldClose())
 		{
-
+			// start game if enter is pressed and game isn't started
 			if (IsKeyPressed(KEY_ENTER) && start == false)
 			{
 				start = true;
@@ -242,6 +246,7 @@ int main()
 				EndDrawing();
 			}
 
+			// reset game
 			if (IsKeyPressed(KEY_R))
 			{
 				start = false;
