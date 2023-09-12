@@ -48,6 +48,7 @@ struct Piller
 	float ranMain;
 	float ranMine;
 
+	//used to generate top and bottom of pillers
 	Rectangle getRec1()
 	{
 		return Rectangle{ x, y - ranMain, width, height};
@@ -66,9 +67,11 @@ struct Piller
 
 int main()
 {
+	//starting window
 	InitWindow(800, 600, "Not Flappy Bird");
 	SetWindowState(FLAG_VSYNC_HINT);
 
+	//generation of bird
 	Bird bird;
 	bird.x = GetScreenWidth() / 4;
 	bird.y = GetScreenHeight() / 2;
@@ -77,6 +80,7 @@ int main()
 	bird.speedDown = 200;
 	bird.speedFall= 250;
 
+	//generation of pillers
 	Piller piller1;
 	piller1.x = (GetScreenWidth() / 4) + 200;
 	piller1.y = 0;
@@ -105,6 +109,7 @@ int main()
 				start = true;
 				score = 0;
 
+				//movement of bird
 				bird.x = GetScreenWidth() / 4;
 				bird.y = GetScreenHeight() / 2;
 				bird.radius = 25;
@@ -112,6 +117,7 @@ int main()
 				bird.speedDown = 200;
 				bird.speedFall = 250;
 
+				//movement of pillers
 				piller1.x = (GetScreenWidth() / 4) + 200;
 				piller1.y = 0;
 				piller1.height = 600;
@@ -132,7 +138,7 @@ int main()
 			}
 			if (start == true)
 			{
-
+				//generation of birds
 				piller1.x -= piller1.speed;
 				piller2.x -= piller1.speed;
 				if (piller1.x < -90)
@@ -151,6 +157,7 @@ int main()
 					score++;
 				}
 
+				//control of bird
 				if (IsKeyPressed(KEY_SPACE))
 				{
 					bird.y -= bird.speedUp * GetFrameTime();
@@ -169,7 +176,7 @@ int main()
 				}
 
 
-				//Start of Collision
+				//Checking for bird collision with each part of pillars
 				if (CheckCollisionCircleRec(Vector2{ bird.x, bird.y }, bird.radius, piller1.getRec1()))
 				{
 					bird.speedFall = 0;
@@ -227,6 +234,8 @@ int main()
 			}
 			else
 			{
+
+				//start screen
 				ClearBackground(BLACK);
 				DrawText("Press Enter to start!", (GetScreenWidth() / 4), (GetScreenWidth() / 4), 25, WHITE);
 				DrawText(TextFormat("Score: %i", score), (GetScreenWidth()  / 4), (GetScreenWidth() - 400), 40, WHITE);
